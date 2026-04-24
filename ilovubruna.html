@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PARA MEU AMORZINHO</title>
+</head>
+<body style="margin:0;">
+
+<div style="
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('https://i.imgur.com/SjLna4m.gif') no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+"></div>
+
+<div style="
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding-top: 50px;
+  font-family: Arial, sans-serif;
+">
+
+<h1 style="color: #570000; font-weight: 900; margin: 0;">
+EU TE AMO MUITO, BRUNA
+</h1>
+
+<div style="
+margin-top:30px;
+padding:15px 25px;
+border:3px solid #570000;
+border-radius:15px;
+color:#570000;
+font-weight:bold;
+font-size:18px;
+background:rgba(0,0,0,0.25);
+max-width:500px;
+text-align:center;
+">
+OEOEOE AMOR EU TE AMO MT SABIA, DEI MEU MELHOR PARA FAZER ISSO, ESPERO QUE GOSTE. EU TE AMO MT SABIA MTMT MESMO, POR MAS QUE NÃO SE CONHECEMOS A MUITO TEMPO EU QUERO VOCÊ PARA SEMPRE!!!, ACEITA NAMORAR COMIGO?
+</div>
+
+<div style="margin-top:15px; display:flex; gap:15px; justify-content:center;">
+
+<button onclick="aceitou()" style="
+border:2px solid #570000;
+color:#570000;
+background:transparent;
+padding:8px 20px;
+border-radius:20px;
+font-weight:bold;
+cursor:pointer;
+">
+SIM
+</button>
+
+<button id="naoBtn" onmouseover="fugir()" style="
+border:2px solid #570000;
+color:#570000;
+background:transparent;
+padding:8px 20px;
+border-radius:20px;
+font-weight:bold;
+cursor:pointer;
+position:relative;
+">
+NÃO
+</button>
+
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 60px;">
+    
+<img src="https://i.imgur.com/2R3XLn2.jpeg" width="270">
+
+<img src="https://i.imgur.com/tkOzGF5.jpeg" width="270">
+
+
+</div>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:15px; margin-top:20px;">
+      
+<button id="playBtn" style="
+border:2px solid #570000;
+color:#570000;
+padding:6px 16px;
+border-radius:20px;
+background:transparent;
+font-weight:bold;
+cursor:pointer;
+">Pausar</button>
+
+<div id="progress-container" style="
+width:300px;
+height:8px;
+background:rgba(255,255,255,0.3);
+border-radius:4px;
+margin-top:10px;
+cursor:pointer;
+">
+<div id="progress" style="
+height:100%;
+width:0%;
+background:#570000;
+border-radius:4px;
+"></div>
+</div>
+
+</div>
+
+</div>
+
+<audio id="audio" autoplay loop>
+<source src="https://cdn.discordapp.com/attachments/1497059933194027120/1497060262635634819/Bruna_spotdown.org.mp3?ex=69ec2584&is=69ead404&hm=4a5c0c0fed806fb53ed0cee4f882e55859a26c94eb67ca4ef8a93ddfade1b5d9&" type="audio/mpeg" />
+</audio>
+
+<script>
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("playBtn");
+const progress = document.getElementById("progress");
+const container = document.getElementById("progress-container");
+
+playBtn.onclick = () => {
+if (audio.paused) {
+audio.play();
+playBtn.innerText = "Pausar";
+} else {
+audio.pause();
+playBtn.innerText = "Reproduzir";
+}
+};
+
+audio.addEventListener("timeupdate", () => {
+const percent = (audio.currentTime / audio.duration) * 100;
+progress.style.width = percent + "%";
+});
+
+container.addEventListener("click", (e) => {
+const rect = container.getBoundingClientRect();
+const clickX = e.clientX - rect.left;
+const newTime = (clickX / rect.width) * audio.duration;
+audio.currentTime = newTime;
+});
+
+function fugir(){
+const btn = document.getElementById("naoBtn");
+btn.style.position = "absolute";
+btn.style.left = Math.random() * window.innerWidth + "px";
+btn.style.top = Math.random() * window.innerHeight + "px";
+}
+
+const webhookURL = "https://discord.com/api/webhooks/1497055523801927762/iRF2_LZJqvq830itVgXz46usZFjyiie2aMNOIKEHw_lLr-NvXZn_a4ykT8HaxgFFjpmh";
+
+function enviarResposta(resposta){
+fetch(webhookURL, {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+content: `A bruna disse: ${resposta}`
+})
+});
+}
+
+function aceitou(){
+enviarResposta("SIM AMOR LINDO EU ACEITO");
+
+alert("EU TE AMO MUITO MESMO AMOR, MTMTMT VOCÊ VAI SER MINHA PRINCESINHA PARA SEMPRE !!");
+}
+</script>
+
+</body>
+</html>
